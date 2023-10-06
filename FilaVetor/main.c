@@ -20,10 +20,9 @@ int main()
     {
         float valor = fila_retira(f); // Retira um valor da fila
         printf("\nValor retirado da fila: %.1f\n", valor);
+        printf("\nApos retirada:\n");
+        fila_imprime(f); // Imprime a fila após a retirada
     }
-
-    printf("\nApos retirada:\n");
-    fila_imprime(f); // Imprime a fila após a retirada
 
     printf("\nVerificando se a fila esta vazia: %s\n", fila_vazia(f) ? "Sim" : "Não"); // Verifica se a fila está vazia
 
