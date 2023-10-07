@@ -114,7 +114,7 @@ struct fila
 
 - `float dados[MAX]`: Este é um vetor que armazena os elementos da fila. Os elementos da fila são do tipo float e a capacidade máxima da fila é definida como `MAX`.
 
-## Vantagens de uma Fila com Vetor:
+## Vantagens Fila com Vetor:
 
 1. **Simplicidade**: Filas com vetores são fáceis de entender e implementar. 
 
@@ -124,7 +124,7 @@ struct fila
 
 4. **Apropriada para Uso Limitado**: Em casos em que o número máximo de elementos na fila é conhecido antecipadamente, uma fila com vetor pode ser a escolha certa.
 
-## Desvantagens de uma Fila com Vetor:
+## Desvantagens Fila com Vetor:
 
 1. **Tamanho Fixo**: O tamanho da fila é fixo, o que significa que, se você atingir a capacidade máxima, não poderá adicionar mais elementos a menos que aloque um vetor maior e copie os elementos existentes.
 
@@ -343,7 +343,7 @@ struct fila
 
 - `struct fila`: A estrutura de fila mantém dois ponteiros, `ini` e `fim`, que apontam para o início e o final da fila, respectivamente. Também mantém o tamanho atual da fila (`tamanho`).
 
-## Vantagens de uma Fila com Listas:
+## Vantagens Fila com Listas:
 
 1. **Dinamicidade**: A fila pode crescer dinamicamente à medida que novos elementos são adicionados, sem a necessidade de definir um tamanho máximo fixo.
 
@@ -351,7 +351,7 @@ struct fila
 
 3. **Facilidade de Inserção e Remoção**: A inserção e a remoção de elementos no início da fila (primeiro e último nós) são operações eficientes, diferente da com vetores que a remoção tinha uma complexidade O(n) com listas encadeadas a complexidade é constate O(1).
 
-## Desvantagens de uma Fila com Listas:
+## Desvantagens Fila com Listas:
 
 1. **Acesso Aleatório Ineficiente**: O acesso aleatório aos elementos é ineficiente, pois você deve percorrer a fila a partir do início para acessar elementos em posições intermediárias.
 
