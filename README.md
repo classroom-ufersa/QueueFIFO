@@ -307,3 +307,197 @@ void fila_libera(Fila *f)
 ```c
 fila_libera(minhaFila);
 ```
+
+## Fila com Listas
+
+### Descrição Fila com Listas
+
+- Uma fila com listas encadeadas em C é uma estrutura de dados linear que segue a abordagem "primeiro a entrar, primeiro a sair" (FIFO - First-In-First-Out). Em vez de usar um vetor, essa implementação utiliza uma lista encadeada para armazenar os elementos da fila.
+
+- Uma lista encadeada é uma estrutura de dados na qual cada elemento (nó) possui um valor e um ponteiro para o próximo elemento da lista.
+
+![Fila lista](https://github.com/classroom-ufersa/QueueFIFO/blob/main/Img/filalista.png)
+
+**imagem tirada do site:** [IFSC](https://wiki.sj.ifsc.edu.br/index.php/PRG29003:_Introdução_a_Filas)
+
+## Estrutura Fila com Listas
+
+Estruturas `struct lista` e `struct fila`
+
+```c
+struct lista
+{
+    float dado;
+    struct lista *prox;
+};
+
+struct fila
+{
+    struct lista *fim;
+    struct lista *ini;
+    int tamanho;
+};
+```
+
+- `struct lista`: Cada nó na lista encadeada contém um valor (`dado`) e um ponteiro para o próximo nó (`prox`).
+
+- `struct fila`: A estrutura de fila mantém dois ponteiros, `ini` e `fim`, que apontam para o início e o final da fila, respectivamente. Também mantém o tamanho atual da fila (`tamanho`).
+
+## Vantagens de uma Fila com Listas:
+
+1. **Dinamicidade**: A fila pode crescer dinamicamente à medida que novos elementos são adicionados, sem a necessidade de definir um tamanho máximo fixo.
+
+2. **Economia de Memória**: A memória é alocada sob demanda à medida que os elementos são inseridos na fila, economizando memória quando a capacidade total não é usada.
+
+3. **Facilidade de Inserção e Remoção**: A inserção e a remoção de elementos no início da fila (primeiro e último nós) são operações eficientes, diferente da com vetores que a remoção tinha uma complexidade O(n) com listas encadeadas a complexidade é constate O(1).
+
+## Desvantagens de uma Fila com Listas:
+
+1. **Acesso Aleatório Ineficiente**: O acesso aleatório aos elementos é ineficiente, pois você deve percorrer a fila a partir do início para acessar elementos em posições intermediárias.
+
+2. **Memória de Ponteiros**: Cada nó na lista encadeada requer um espaço adicional para armazenar um ponteiro para o próximo nó, o que pode resultar em um gasto a mais de memória comparado a uma fila com vetor.
+
+## Algumas funções da TAD filalist
+
+### fila_cria
+
+**Descrição:** Esta função cria uma nova fila vazia alocando memória para a estrutura da fila e inicializando os ponteiros de início (`ini`) e fim (`fim`) como nulos.
+
+**Código:**
+
+```c
+Fila *fila_cria(void)
+{
+    Fila *f = (Fila *)malloc(sizeof(Fila));
+    f->fim = NULL;
+    f->ini = NULL;
+    if (f == NULL)
+    {
+        printf("[Erro] memória.\n");
+        exit(1);
+    }
+    f->tamanho = 0;
+    return f;
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+Fila *minhaFila = fila_cria();
+```
+
+### fila_insere
+
+**Descrição:** Esta função adiciona um elemento à fila no final, usando uma lista encadeada. Ela aloca memória para um novo nó, atribui o valor e atualiza os ponteiros `ini` e `fim` conforme necessário.
+
+**Código:**
+
+```c
+void fila_insere(Fila *f, float v)
+{
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
+    if (novo == NULL)
+    {
+        printf("[Erro] memória.\n");
+        exit(1);
+    }
+    novo->dado = v;
+    novo->prox = NULL;
+    if (f->fim != NULL)
+        f->fim->prox = novo;
+    else
+        f->ini = novo;
+    f->fim = novo;
+    f->tamanho++;
+    printf("Valor %.1f inserido na fila.\n", v);
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+fila_insere(minhaFila, 42.5);
+```
+
+### fila_retira
+
+**Descrição:** Esta função remove e retorna o elemento do início da fila usando uma lista encadeada. Ela verifica se a fila está vazia antes de tentar desenfileirar.
+
+**Código:**
+
+```c
+float fila_retira(Fila *f)
+{
+    if (fila_vazia(f))
+    {
+        printf("Fila vazia!\n");
+        exit(1);
+    }
+    Lista *l = f->ini;
+    float v = f->ini->dado;
+    f->ini = f->ini->prox;
+    if (f->ini == NULL)
+        f->fim = NULL;
+    f->tamanho--;
+    free(l);
+    return v;
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+float elemento = fila_retira(minhaFila);
+```
+
+### fila_imprime
+
+**Descrição:** Esta função imprime os elementos da fila usando uma lista encadeada, se houver elementos presentes.
+
+**Código:**
+
+```c
+void fila_imprime(Fila *f)
+{
+    Lista *l;
+    int i = 1;
+    for (l = f->ini; l != NULL; l = l->prox)
+    {
+        printf("\nDado %d: %.1f\n", i, l->dado);
+        i++;
+    }
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+fila_imprime(minhaFila);
+```
+
+### fila_libera
+
+**Descrição:** Esta função libera a memória alocada para a fila e seus nós na lista encadeada.
+
+**Código:**
+
+```c
+void fila_libera(Fila *f)
+{
+    Lista *p = f->ini;
+    while (p != NULL)
+    {
+        Lista *t = p->prox;
+        free(p);
+        p = t;
+    }
+    free(f);
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+fila_libera(minhaFila);
+```
