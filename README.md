@@ -79,3 +79,231 @@ Agora, você pode executar o programa compilado usando o comando `./` no termina
 - **Facilita a Depuração:** Se ocorrer um erro em uma operação da Fila, é mais fácil depurar (encontrar o erro) quando você tem uma interface clara e bem definida para a Fila. Você pode isolar o problema mais facilmente.
 
 - **Documentação:** O TAD Fila serve como documentação clara das operações suportadas pela Fila. Isso ajuda os desenvolvedores a entender como usar a Fila corretamente.
+
+Claro, aqui estão os tópicos com base no código fornecido para a estrutura de dados de Fila com Vetor:
+
+---
+
+## Fila Com Vetor
+
+### Descrição Fila Com Vetor
+
+- Uma fila com vetor em C é uma estrutura de dados linear que segue a abordagem "primeiro a entrar, primeiro a sair" (FIFO - First-In-First-Out). Em outras palavras, o primeiro elemento adicionado à fila é o primeiro a ser removido, semelhante a filas mesmo de supermercados etc.
+
+- Para implementar uma fila com vetor em C, você utiliza um vetor (array) para armazenar os elementos da fila. Além disso, você precisa de um índice que aponta para o final da fila, pois o inicio sempre vai ser o indice 0.
+
+
+![Fila vet](https://github.com/classroom-ufersa/QueueFIFO/blob/main/Img/filavet.png)
+
+**imagem tirada do site:** [UFRJ](https://www.cos.ufrj.br/~rfarias/cos121/filas.html)
+
+
+## Estrutura Fila Com Vetor
+
+Estrutura `struct fila`
+
+```c
+struct fila
+{
+    int tamanhoatual;  
+    float dados[MAX];  
+};
+```
+
+- `int tamanhoatual`: Este membro representa o número de elementos atualmente na fila. Quando a fila é criada, o tamanho atual é definido como 0 na hora de criar a fila, indicando que a fila está vazia.
+
+- `float dados[MAX]`: Este é um vetor que armazena os elementos da fila. Os elementos da fila são do tipo float e a capacidade máxima da fila é definida como `MAX`.
+
+## Vantagens de uma Fila com Vetor:
+
+1. **Simplicidade**: Filas com vetores são fáceis de entender e implementar. 
+
+2. **Eficiência de Acesso**: O acesso aos elementos de uma fila com vetor é rápido, pois os elementos são armazenados em uma estrutura de dados contígua na memória.
+
+3. **Espaço de Memória Fixo**: A fila com vetor tem um tamanho máximo fixo definido pela capacidade do vetor. Isso pode ser benéfico quando você deseja limitar o consumo de memória.
+
+4. **Apropriada para Uso Limitado**: Em casos em que o número máximo de elementos na fila é conhecido antecipadamente, uma fila com vetor pode ser a escolha certa.
+
+## Desvantagens de uma Fila com Vetor:
+
+1. **Tamanho Fixo**: O tamanho da fila é fixo, o que significa que, se você atingir a capacidade máxima, não poderá adicionar mais elementos a menos que aloque um vetor maior e copie os elementos existentes.
+
+2. **Desperdício de Memória**: Se a capacidade do vetor for definida muito grande, pode ocorrer desperdício de memória, especialmente se a fila não estiver sendo totalmente utilizada.
+
+3. **Complexidade de remoção**: O tempo para remover em filas com vetores é bem maior pois após remover o primeiro elemento (Do indice 0), temos que reorganizar toda a fila, por exemplo colocar o que estava no indice 1 para o indice 0, o indice 2 para o 1... e isso ate o fim da fila o que da uma complexidade O(n) Linear, diferente da fila com listas.
+## Algumas funções da TAD filavet
+
+### fila_cria
+
+**Descrição:** Esta função cria uma nova fila vazia alocando memória para a estrutura da fila e o vetor de dados associado. Ela define a capacidade inicial da fila.
+
+**Código:**
+
+```c
+Fila *fila_cria(void)
+{
+    Fila *f = (Fila *)malloc(sizeof(Fila));
+    if (f == NULL)
+    {
+        printf("Erro alocacao!\n");
+        exit(1);
+    }
+    f->tamanhoatual = 0;
+    return f;
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+Fila *minhaFila = fila_cria();
+```
+
+### fila_insere
+
+**Descrição:** Esta função adiciona um elemento à fila no final. Se a capacidade da fila for excedida não é adicionado.
+
+**Código:**
+
+```c
+void fila_insere(Fila *f, float v)
+{
+    if (fila_cheia(f))
+        printf("Fila cheia!\n");
+    else
+    {
+        f->dados[f->tamanhoatual] = v;
+        f->tamanhoatual++;
+        printf("Valor %.1f inserido na fila.\n", v);
+    }
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+fila_insere(minhaFila, 42.5);
+```
+
+### fila_retira
+
+**Descrição:** Esta função remove e retorna o elemento do início da fila. Ela também reorganiza todo o vetor apos a remoção.
+
+**Código:**
+
+```c
+float fila_retira(Fila *f)
+{
+    int i = 0, j = 1;
+    float v = f->dados[0];
+    for (i = 0; i < (f->tamanhoatual) - 1; i++)
+    {
+        f->dados[i] = f->dados[j];
+        j++;
+    }
+    f->tamanhoatual--;
+    return v;
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+float elemento = fila_retira(minhaFila);
+```
+
+### fila_vazia
+
+**Descrição:** Esta função verifica se a fila está vazia, retornando 1(verdadeiro) se estiver vazia ou 0(falso) caso contrário.
+
+**Código:**
+
+```c
+int fila_vazia(Fila *f)
+{
+    if (f->tamanhoatual == 0)
+        return 1;
+    return 0;
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+if (fila_vazia(minhaFila))
+{
+    printf("A fila está vazia.\n");
+}
+```
+
+### fila_cheia
+
+**Descrição:** Esta função verifica se a fila está cheia, retornando 1(verdadeiro) se estiver cheia ou 0(falso) caso contrário.
+
+**Código:**
+
+```c
+int fila_cheia(Fila *f)
+{
+    if (f->tamanhoatual == MAX)
+        return 1;
+    return 0;
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+if (fila_cheia(minhaFila))
+{
+    printf("A fila está cheia.\n");
+}
+```
+
+### fila_imprime
+
+**Descrição:** Esta função imprime os elementos da fila, se houver elementos presentes.
+
+**Código:**
+
+```c
+void fila_imprime(Fila *f)
+{
+    if (fila_vazia(f))
+        printf("Fila vazia!\n");
+    else
+    {
+        int i = 0, j = 0;
+        for (i = 0; i < f->tamanhoatual; i++)
+        {
+            j++;
+            printf("\nDado %d: %.1f\n", j, f->dados[i]);
+        }
+    }
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+fila_imprime(minhaFila);
+```
+
+### fila_libera
+
+**Descrição:** Esta função libera a memória alocada para a fila.
+
+**Código:**
+
+```c
+void fila_libera(Fila *f)
+{
+    free(f);
+}
+```
+
+**Exemplo de Uso:**
+
+```c
+fila_libera(minhaFila);
+```
