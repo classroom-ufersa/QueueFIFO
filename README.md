@@ -308,9 +308,9 @@ void fila_libera(Fila *f)
 fila_libera(minhaFila);
 ```
 
-## Fila com Listas
+## Fila com Lista
 
-### Descrição Fila com Listas
+### Descrição Fila com Lista
 
 - Uma fila com listas encadeadas em C é uma estrutura de dados linear que segue a abordagem "primeiro a entrar, primeiro a sair" (FIFO - First-In-First-Out). Em vez de usar um vetor, essa implementação utiliza uma lista encadeada para armazenar os elementos da fila.
 
@@ -320,7 +320,7 @@ fila_libera(minhaFila);
 
 **imagem tirada do site:** [IFSC](https://wiki.sj.ifsc.edu.br/index.php/PRG29003:_Introdução_a_Filas)
 
-## Estrutura Fila com Listas
+## Estrutura Fila com Lista
 
 Estruturas `struct lista` e `struct fila`
 
@@ -343,7 +343,7 @@ struct fila
 
 - `struct fila`: A estrutura de fila mantém dois ponteiros, `ini` e `fim`, que apontam para o início e o final da fila, respectivamente. Também mantém o tamanho atual da fila (`tamanho`).
 
-## Vantagens Fila com Listas:
+## Vantagens Fila com Lista:
 
 1. **Dinamicidade**: A fila pode crescer dinamicamente à medida que novos elementos são adicionados, sem a necessidade de definir um tamanho máximo fixo.
 
@@ -351,7 +351,7 @@ struct fila
 
 3. **Facilidade de Inserção e Remoção**: A inserção e a remoção de elementos no início da fila (primeiro e último nós) são operações eficientes, diferente da com vetores que a remoção tinha uma complexidade O(n) com listas encadeadas a complexidade é constate O(1).
 
-## Desvantagens Fila com Listas:
+## Desvantagens Fila com Lista:
 
 1. **Acesso Aleatório Ineficiente**: O acesso aleatório aos elementos é ineficiente, pois você deve percorrer a fila a partir do início para acessar elementos em posições intermediárias.
 
