@@ -9,13 +9,13 @@
   - [Estrutura](#estrutura-fila-com-vetor)
   - [Vantagens](#vantagens-fila-com-vetor)
   - [Desvantagens](#desvantagens-fila-com-vetor)
-  - [Algumas Funções da TAD Fila Com Vetor](#algumas-funcoes-da-tad-filavet)
+  - [Algumas Funções da TAD Fila Com Vetor](#algumas-funções-da-tad-filavet)
 - [Fila Com Lista](#fila-com-lista)
   - [Descrição](#descrição-fila-com-lista)
   - [Estrutura](#estrutura-fila-com-lista)
   - [Vantagens](#vantagens-fila-com-lista)
   - [Desvantagens](#desvantagens-fila-com-lista)
-  - [Algumas Funções da TAD Fila Com Lista](#algumas-funcoes-da-tad-filalist)
+  - [Algumas Funções da TAD Fila Com Lista](#algumas-funções-da-tad-filalist)
 
 ## Introdução
 
