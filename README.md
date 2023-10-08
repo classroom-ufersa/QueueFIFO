@@ -5,17 +5,17 @@
 - [Como Baixar, Compilar e Executar Código de Repositório via Terminal](#baixar-compilar-e-executar-código-de-repositório-via-terminal)
 - [Porque Utilizar TADS?](#porque-utilizar-uma-tad)
 - [Fila Com Vetor](#fila-com-vetor)
-  - [Descrição](#descrição-fila-com-vetor)
+  - [Descrição](#descricao-fila-com-vetor)
   - [Estrutura](#estrutura-fila-com-vetor)
   - [Vantagens](#vantagens-fila-com-vetor)
   - [Desvantagens](#desvantagens-fila-com-vetor)
-  - [Algumas Funções da TAD Fila Com Vetor](#algumas-funções-da-tad-filavet)
+  - [Algumas Funções da TAD Fila Com Vetor](#algumas-funcoes-da-tad-filavet)
 - [Fila Com Lista](#fila-com-lista)
-  - [Descrição](#descrição-fila-com-lista)
+  - [Descrição](#descricao-fila-com-lista)
   - [Estrutura](#estrutura-fila-com-lista)
   - [Vantagens](#vantagens-fila-com-lista)
   - [Desvantagens](#desvantagens-fila-com-lista)
-  - [Algumas Funções da TAD Fila Com Lista](#algumas-funções-da-tad-filalist)
+  - [Algumas Funções da TAD Fila Com Lista](#algumas-funcoes-da-tad-filalist)
 
 ## Introdução
 
